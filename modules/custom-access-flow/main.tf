@@ -5,7 +5,7 @@ locals {
 # The Flow that grants users access to custom targets.
 resource "sym_flow" "this" {
   name  = local.flow_name
-  label = "Custom Access"
+  label = "Custom Quickstart"
 
   template = "sym:template:approval:1.0.0"
 

@@ -16,10 +16,10 @@ variable "flow_vars" {
   default     = {}
 }
 
-variable "iam_targets" {
-  description = "List of IAM group targets that end-users can request access to. Each object has a label and a group_name."
+variable "targets" {
+  description = "List of custom targets that end-users can request access to. Each object has a label and an identifier."
   type = list(object(
-    { label = string, group_name = string }
+    { label = string, identifier = string }
   ))
 }
 

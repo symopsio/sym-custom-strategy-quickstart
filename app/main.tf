@@ -22,8 +22,7 @@ module "custom_access_flow" {
   source = "../modules/custom-access-flow"
 
   flow_vars        = var.flow_vars
-  runtime_settings = module.sym_runtime.runtime_settings
+  secrets_settings = module.sym_runtime.secrets_settings
   sym_environment  = module.sym_runtime.prod_environment
   targets          = var.targets
-  tags             = var.tags
 }
