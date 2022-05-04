@@ -72,6 +72,6 @@ resource "sym_integration" "custom" {
   external_id = var.integration_identifier
 
   settings = {
-    api_token_secret = sym_secret.api_key.id
+    secret_ids_json = jsonencode([sym_secret.api_key.id])
   }
 }

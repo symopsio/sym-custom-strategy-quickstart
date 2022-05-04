@@ -5,7 +5,7 @@ variable "aws_region" {
 }
 
 variable "error_channel" {
-  description = "The error channel to use to surface Sym errors."
+  description = "The Slack channel where Sym errors will be surfaced."
   type        = string
   default     = "#sym-errors"
 }
