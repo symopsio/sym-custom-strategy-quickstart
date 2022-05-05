@@ -2,6 +2,10 @@
 
 A starte template to get a custom access workflow set up for your team.
 
+## Tutorial
+
+Check out a step-by-step tutorial [here](https://custom-strategy.tutorials.symops.com).
+
 ## Data Flow
 
 When an End-User approves an escalation request, the Sym Platform does the following:
