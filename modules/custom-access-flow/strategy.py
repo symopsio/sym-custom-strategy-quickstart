@@ -14,6 +14,20 @@ class CustomAccess(AccessStrategy):
         # self.get_requester_identity.
         return user.email
 
+        # Example:
+        # If the system you're escalating users in has its own user IDs, you might
+        # fetch and return them here.
+        # response = requests.post(
+        #     "https://some-saas-product.com/api/v1/user-from-email",
+        #     json={"email": user.email}
+        # )
+        # response_json = response.json()
+
+        # if not response.ok:
+        #     raise RuntimeError(f"Failed to fetch ID for {user.email}: {response_json['error']}")
+
+        # return response_json["id"]
+
     def escalate(self, target_id, event):
         # Retrieve the user's identity for this strategy
         requester = self.get_requester_identity(event)
