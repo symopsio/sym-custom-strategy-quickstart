@@ -5,7 +5,14 @@ import requests
 
 class CustomAccess(AccessStrategy):
     """This AccessStrategy is fully customizable, and contains basic implementations
-    of all three required methods.
+    of all three required methods:
+
+        - fetch_remote_identity
+        - escalate
+        - deescalate
+
+    As well as a helper method, `get_api_token`, which will retrieve the value of the
+    configured sym_secret.
     """
 
     def fetch_remote_identity(self, user):
@@ -19,7 +26,8 @@ class CustomAccess(AccessStrategy):
         # fetch and return them here.
         # response = requests.post(
         #     "https://some-saas-product.com/api/v1/user-from-email",
-        #     json={"email": user.email}
+        #     headers={"Authorization": self.get_api_token()},
+        #     json={"email": user.email},
         # )
         # response_json = response.json()
 
@@ -42,6 +50,7 @@ class CustomAccess(AccessStrategy):
         # Here is where you might hit an external API to grant access to the requester
         # response = requests.post(
         #     "https://some-saas-product.com/api/v1/grant-access",
+        #     headers={"Authorization": self.get_api_token()},
         #     json={"email": requester}
         # )
 
@@ -63,8 +72,17 @@ class CustomAccess(AccessStrategy):
         # Here is where you might hit an external API to revoke access from the requester
         # response = requests.post(
         #     "https://some-saas-product.com/api/v1/revoke-access",
+        #     headers={"Authorization": self.get_api_token()},
         #     json={"email": requester}
         # )
 
         # if not response.ok:
         #     raise RuntimeError(f"Failed to revoke access: {response.json()['error']}")
+
+    def get_api_token(self):
+        secrets = self.integration.settings["secrets"]
+
+        if not secrets:
+            raise RuntimeError("Secrets were not defined in Terraform")
+
+        return secrets[0].retrieve_value()
