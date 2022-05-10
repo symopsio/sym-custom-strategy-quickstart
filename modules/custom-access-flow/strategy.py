@@ -80,6 +80,8 @@ class CustomAccess(AccessStrategy):
         #     raise RuntimeError(f"Failed to revoke access: {response.json()['error']}")
 
     def get_api_token(self):
+        # This returns a list of Secret objects. See the docs at:
+        # https://sdk.docs.symops.com/doc/sym.sdk.secret.Secret.html
         secrets = self.integration.settings["secrets"]
 
         if not secrets:
