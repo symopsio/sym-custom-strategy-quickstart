@@ -17,7 +17,7 @@ module "sym_runtime" {
   tags               = var.tags
 }
 
-# A Flow that can manage access to a list of IAM target groups.
+# A Flow that will execute a custom Access Strategy
 module "custom_access_flow" {
   source = "../modules/custom-access-flow"
 
